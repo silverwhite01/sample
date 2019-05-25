@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless FILL_IN
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
@@ -72,6 +72,16 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless @user == current_user?(@user)
   end
 
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
+  def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+  end
+
+    # 管理者かどうかを確認
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save { email.downcase! }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -51,6 +53,10 @@ class User < ActiveRecord::Base
   # パスワード再設定のメールを送信する
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private

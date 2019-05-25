@@ -58,6 +58,7 @@ end
 group :production do
   gem 'pg','>=0.20.0'
   gem 'rails_12factor', '>= 0.0.2'
+  gem 'fog'
 end
 
 group :test do
@@ -73,3 +74,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'mini_magick'
+
